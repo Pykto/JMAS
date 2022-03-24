@@ -1,0 +1,19 @@
+SELECT datetime, valor, clave_inst
+FROM base_ana
+WHERE clave_inst = 
+	Any(SELECT distinct(key) FROM base_instalation WHERE type = '2')
+	AND LOWER(punto) LIKE LOWER('Nivel')
+	AND valor >= 0
+ORDER BY 
+	datetime ASC,
+	clave_inst ASC
+
+/*
+Extracted data must be ordered by date
+
+1 = Pozos (97) - Presión 
+2 = Tanques (38) - Nivel
+3 = Rebombeos (29) - Nivel
+4 = Valvula (2) - Nivel
+  = Valvula (35) - Nivel
+*/
